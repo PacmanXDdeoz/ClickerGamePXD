@@ -4,18 +4,32 @@ const cont = document.getElementById('cont')
 const contHelps = document.getElementById('contHelps')
 const petsGacha = document.getElementById('petsGacha')
 
+const musicBack = document.getElementById('musicBack')
+
 let conteo = 0
 let click  = 1
 let autoClick = 0
+let musicInit = false
 
 pets = [
     'A_d_o.jpg', 'Biyu.jpg', 
     'dokja.jpg', 'ishmael.jpg', 
     'jongdok.jpg', 'jonghyuk.jpg', 
     'oguri.jpg', 'uma_meme.jpg', 
-    'uma_pat.jpg']
+    'uma_pat.jpg', 'ishma.jpg',
+    'miku_box.jpg', 'miku_bwaa.jpg',
+    'miku_cat.jpg', 'miku.jpg',
+    'teto_cat.jpg', 'teto_drink.jpg',
+    'teto.jpg', 'vash.jpg'
+]
 
 btMain.addEventListener('click', ()=>{
+
+    if (!musicInit) {
+        musicBack.src += "&autoplay=1"
+        musicInit = true
+    }
+    
     conteo += click
     cont.textContent = conteo
 
