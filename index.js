@@ -1,5 +1,7 @@
 const btMain = document.getElementById('btMain')
 const cont = document.getElementById('cont')
+const autoCl = document.getElementById('autoclicks')
+const clicksCont = document.getElementById('clicks')
 
 const contHelps = document.getElementById('contHelps')
 const petsGacha = document.getElementById('petsGacha')
@@ -32,6 +34,8 @@ btMain.addEventListener('click', ()=>{
     
     conteo += click
     cont.textContent = conteo
+    clicksCont.textContent = click
+    autoCl.textContent = autoClick
 
     if (conteo >= 10){
         multiplicador()
@@ -57,6 +61,7 @@ function multiplicador(){
             click = click+1
 
             cont.textContent = conteo
+            clicksCont.textContent = click
             btMulti.remove()
         } else {
             alert('No tienes suficientes puntos')
@@ -78,7 +83,9 @@ function autoClicker(){
         if (conteo >= 50){
             conteo -=50
             activateClock()
+            autoClick += 1
             cont.textContent = conteo
+            autoCl.textContent = autoClick
             btAuto.remove()
         } else {
             alert('Necesitas 50 puntos para el autoclick')
@@ -88,8 +95,9 @@ function autoClicker(){
 
 function activateClock(){
     setInterval(()=>{
-        conteo += click
+        conteo += 1
         cont.textContent = conteo
+        autoCl.textContent = autoClick
     }, 5000)
 }
 
@@ -125,3 +133,4 @@ function tirarGacha(){
 
     petsGacha.appendChild(newPet)
 }
+

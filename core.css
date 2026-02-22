@@ -1,7 +1,7 @@
 :root {
     --bg-color: #245271;
     --accent-blue: #1e96e6;
-    --text-color: #000000;
+    --text-color: #ffffff;
     --stats-border: #f3e28d;
     --stats-text: #4a74f5; /* Color azul de la palabra Stats */
 }
@@ -13,17 +13,25 @@
 }
 
 body {
-    background-color: var(--bg-color);
+    
     font-family: "Jersey 10", sans-serif;
     color: white;
-    min-height: 100vh;
-    overflow-x: hidden;
+    height: 100%;
+    overflow: hidden;
+    padding: 20px;
+    min-height: 700vh;
+
+    background: black;
 }
 
 .game-container {
+    position: relative;
+    z-index: 1;
+    background: transparent;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     padding: 20px;
 }
 
@@ -39,7 +47,9 @@ body {
 
 .header h1 {
     flex: 0 1 auto;
+    font-weight: normal;
     margin: 0;
+    -webkit-font-smoothing: antialiased;
 }
 
 .cont-helps{
@@ -125,7 +135,11 @@ body {
 
 /* FOOTER SECTION */
 .footers {
-    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: auto;
     margin-top: 20px;
 }
 
@@ -133,21 +147,17 @@ body {
     border: 3px dashed white;
     height: 100%;
     width: 100%;
-}
-
-.petsGacha{
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 20px;
-    padding: 20px;
-    border: 2px dashed #ccc;
+    padding: 5px;
+    min-height: 120px;
+    gap: 10px;
 }
 
 .img-gacha{
     width: 100px;
     height: 100px;
-    object-fit: cover;
+    object-fit: contain;
     animation: aparecer 0.5s ease;
+    padding: 2px;
 }
 
 @keyframes aparecer {
@@ -196,7 +206,6 @@ body {
     min-width: 100px;
     transition: transform 0.2s, background-color 0.2s;
 
-    /* El truco del corte en la esquina inferior derecha */
     /* Crea un polígono que corta la esquina a 10px */
     clip-path: polygon(
         0% 0%, 
@@ -228,4 +237,19 @@ body {
         max-width: 100%;
         justify-content: center; /* Botones centrados en pantallas pequeñas */
     }
+}
+
+
+svg {
+	position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display: block;
+    background-color: #0e4166;
+    background-image: linear-gradient(to bottom, rgba(14, 65, 102, 0.86), #0e4166);
+    z-index: -1;
+    pointer-events: none;
 }
