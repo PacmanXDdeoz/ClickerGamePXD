@@ -47,12 +47,36 @@
         <header class="header">
             <div class="contTitle">
                 <h1 class="title">¡Bienvenido a ClickerGame!</h1>
+                <div>
+                    <label for="volume">Volume: </label>
+                    <input type="range" id="volume" min="0" max="100" value="20">
+                    <span id="valorVolume">20%</span>
+                </div>
             </div>
             <div id="contHelps" class="cont-helps"></div>
         </header>
 
         <main class="main-content">
-            <div class="div-bt-main">
+            <div class="div-bt-main" id="div-bt-main" style="position: relative;">
+                <div class="gd-wheel">
+  <!-- 12 aspas, cada una rotada 30deg (360/12) -->
+  <div class="gd-blade" style="transform: rotate(0deg)"><div class="gd-blade-shape"></div></div>
+  <div class="gd-blade" style="transform: rotate(30deg)"><div class="gd-blade-shape"></div></div>
+  <div class="gd-blade" style="transform: rotate(60deg)"><div class="gd-blade-shape"></div></div>
+  <div class="gd-blade" style="transform: rotate(90deg)"><div class="gd-blade-shape"></div></div>
+  <div class="gd-blade" style="transform: rotate(120deg)"><div class="gd-blade-shape"></div></div>
+  <div class="gd-blade" style="transform: rotate(150deg)"><div class="gd-blade-shape"></div></div>
+  <div class="gd-blade" style="transform: rotate(180deg)"><div class="gd-blade-shape"></div></div>
+  <div class="gd-blade" style="transform: rotate(210deg)"><div class="gd-blade-shape"></div></div>
+  <div class="gd-blade" style="transform: rotate(240deg)"><div class="gd-blade-shape"></div></div>
+  <div class="gd-blade" style="transform: rotate(270deg)"><div class="gd-blade-shape"></div></div>
+  <div class="gd-blade" style="transform: rotate(300deg)"><div class="gd-blade-shape"></div></div>
+  <div class="gd-blade" style="transform: rotate(330deg)"><div class="gd-blade-shape"></div></div>
+
+  <!-- Centro de la rueda -->
+  <div class="gd-center"></div>
+  <div class="gd-center-inner"></div>
+</div>
                 <button class="primary-button" id="btMain">
                     <img src="static/img/pacman.gif" alt="Botón de pacman" class="pix-img">
                     <span>¡Click aquí!</span>
@@ -71,7 +95,7 @@
             <div style="display: none;">
                 <div style="display: none;">
                     <iframe id="musicBack" width="0" height="0"
-                        src="https://www.youtube.com/embed/AxFWtpaNa0E?autoplay=1&loop=1&playlist=AxFWtpaNa0E"
+                        src="https://www.youtube.com/embed/AxFWtpaNa0E?autoplay=1&loop=1&playlist=AxFWtpaNa0E&enablejsapi=1"
                         frameborder="0" allow="autoplay">
                     </iframe>
                 </div>

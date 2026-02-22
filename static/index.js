@@ -1,4 +1,35 @@
+// ------------------------------------------
+
+const slider = document.getElementById('volume');
+const etiquetaValor = document.getElementById('valorVolume');
+
+// Escuchamos el evento 'input', que se activa mientras arrastras la barra
+slider.addEventListener('input', (event) => {
+    const nuevoVolumen = event.target.value;
+    
+    // 1. Actualizamos el texto en pantalla
+    etiquetaValor.textContent = `${nuevoVolumen}%`;
+    
+    // 2. Enviamos el comando al Iframe de YouTube
+    ajustarVolumen(nuevoVolumen);
+});
+
+function ajustarVolumen(nivel) {
+    const iframe = document.getElementById('musicBack');
+    if (iframe) {
+        const mensaje = JSON.stringify({
+            event: 'command',
+            func: 'setVolume',
+            args: [nivel]
+        });
+        iframe.contentWindow.postMessage(mensaje, '*');
+    }
+}
+
+// ------------------------------------------
+
 const btMain = document.getElementById('btMain')
+const contMain = document.getElementById('div-bt-main')
 const cont = document.getElementById('cont')
 const autoCl = document.getElementById('autoclicks')
 const clicksCont = document.getElementById('clicks')
@@ -13,7 +44,8 @@ let click  = 1
 let autoClick = 0
 let musicInit = false
 
-pets = [
+
+const pets = [
     'A_d_o.jpg', 'Biyu.jpg', 
     'dokja.jpg', 'ishmael.jpg', 
     'jongdok.jpg', 'jonghyuk.jpg', 
@@ -22,8 +54,15 @@ pets = [
     'miku_box.jpg', 'miku_bwaa.jpg',
     'miku_cat.jpg', 'miku.jpg',
     'teto_cat.jpg', 'teto_drink.jpg',
-    'teto.jpg', 'vash.jpg'
+    'teto.jpg', 'vash.jpg',
+    'angela.gif', 'dok_phone.gif',
+    'jong_w.gif', 'orv-biyoo.gif'
 ]
+
+const historialPets = {}
+pets.forEach(pet => {
+    historialPets[pet] = 0
+})
 
 btMain.addEventListener('click', ()=>{
 
@@ -43,6 +82,8 @@ btMain.addEventListener('click', ()=>{
         autoClicker()
     } if (conteo >= 100) {
         gachaPets()
+    } if (conteo >= 1000) {
+        contMain.classList.add('activateLight')
     }
 })
 
@@ -62,7 +103,7 @@ function multiplicador(){
 
             cont.textContent = conteo
             clicksCont.textContent = click
-            btMulti.remove()
+            // btMulti.remove()
         } else {
             alert('No tienes suficientes puntos')
         }
@@ -86,7 +127,7 @@ function autoClicker(){
             autoClick += 1
             cont.textContent = conteo
             autoCl.textContent = autoClick
-            btAuto.remove()
+            // btAuto.remove()
         } else {
             alert('Necesitas 50 puntos para el autoclick')
         }
@@ -112,9 +153,10 @@ function gachaPets(){
 
     btGacha.addEventListener('click', ()=>{
         if (conteo >= 100) {
+            conteo -= 100
             tirarGacha()
             cont.textContent = conteo
-            btGacha.remove()
+            // btGacha.remove()
         } else {
             alert('Necesitas minimo 100 puntos')
         }
@@ -123,8 +165,26 @@ function gachaPets(){
 }
 
 function tirarGacha(){
-    const indRandom = Math.floor(Math.random()*pets.length)
-    const imageSelect = pets[indRandom]
+    const prob = pets.map(pet => {
+        const apariciones = historialPets[pet] || 0
+        return 1 / (apariciones + 1)
+    })
+
+    const totalProb = prob.reduce((a, b) => a + b, 0)
+
+    let indRandom = Math.random() * totalProb
+    let indice = 0
+    
+    for (let i = 0; i < pets.length; i++){
+        if (indRandom < prob[i]) {
+            indice = i
+            break
+        }
+        indRandom -= prob[i]
+    }
+
+    const imageSelect = pets[indice]
+    historialPets[imageSelect]++
 
     const newPet = document.createElement('img')
 
