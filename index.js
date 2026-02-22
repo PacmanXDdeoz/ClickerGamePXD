@@ -78,6 +78,7 @@ function autoClicker(){
         if (conteo >= 50){
             conteo -=50
             activateClock()
+            cont.textContent = conteo
             btAuto.remove()
         } else {
             alert('Necesitas 50 puntos para el autoclick')
@@ -104,6 +105,7 @@ function gachaPets(){
     btGacha.addEventListener('click', ()=>{
         if (conteo >= 100) {
             tirarGacha()
+            cont.textContent = conteo
             btGacha.remove()
         } else {
             alert('Necesitas minimo 100 puntos')

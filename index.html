@@ -4,45 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clicker</title>
+    <title>Clicker Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="core.css">
 </head>
 
 <body>
-    <header>
-        <div id="contHelps" class="contHelps"></div>
-    </header>
+    <div class="game-container">
+        <header class="header">
+            <div class="contTitle">
+                <h1 class="title">¡Bienvenido a ClickerGame!</h1>
+            </div>
+            <div id="contHelps" class="cont-helps"></div>
+        </header>
 
-    <main>
-        <div>
-            <button class="btMain" id="btMain">
-                <span>+</span>
-            </button>
-        </div>
+        <main class="main-content">
+            <div class="div-bt-main">
+                <button class="primary-button" id="btMain">
+                    <span>Click Aquí!</span>
+                </button>
+            </div>
 
-        <div style="display: none;">
+            <aside class="stats-container">
+                <h2 class="stats-title">Stats</h2>
+                <div class="sub-stats">
+                    <p>Clicks: <span id="clicks">0</span></p>
+                    <p>Contador: <span id="cont">0</span></p>
+                    <p>AutoClicks: <span id="autoclicks">0</span></p>
+                </div>
+            </aside>
+
             <div style="display: none;">
-    <iframe 
-        id="musicBack"
-        width="0" 
-        height="0" 
-        src="https://www.youtube.com/embed/AxFWtpaNa0E?autoplay=1&loop=1&playlist=AxFWtpaNa0E" 
-        frameborder="0" 
-        allow="autoplay">
-    </iframe>
-</div>
-        </div>
-    </main>
+                <div style="display: none;">
+                    <iframe id="musicBack" width="0" height="0"
+                        src="https://www.youtube.com/embed/AxFWtpaNa0E?autoplay=1&loop=1&playlist=AxFWtpaNa0E"
+                        frameborder="0" allow="autoplay">
+                    </iframe>
+                </div>
+            </div>
+        </main>
 
-    <footer>
-        <div>
-            <p>Clicks: <span id="cont">0</span></p>
-        </div>
-        <div id="petsGacha" class="petsGacha"></div>
-    </footer>
-
+        <footer class="footers">
+            <div>
+            </div>
+            <div id="petsGacha" class="pets-area"></div>
+        </footer>
+    </div>
     <script src="index.js"></script>
 </body>
 
 </html>
-
